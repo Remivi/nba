@@ -1,0 +1,25 @@
+SELECT 
+int64_field_0 as `index`,
+player_name,
+team_abbreviation,
+CAST(age AS INT64) AS age,
+CAST(player_height AS INT64) AS player_height,
+CAST(player_weight AS INT64) AS player_weight,
+college,
+country,
+draft_year,
+draft_round,
+draft_number,
+gp,
+pts,
+reb,
+ast,
+net_rating,
+ROUND(oreb_pct,3) AS oreb_pct,
+ROUND(dreb_pct,3) AS dreb_pct,
+ROUND(usg_pct,3) AS usg_pct, 
+ROUND(ts_pct,3) AS ts_pct, 
+ROUND(ast_pct,3) AS ast_pct,
+season
+FROM `upskills-77140.nba.all_seasons` 
+ORDER BY int64_field_0
