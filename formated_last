@@ -1,0 +1,6 @@
+#convert column season in date format
+SELECT
+*,
+EXTRACT(YEAR FROM PARSE_DATE("%Y",SUBSTR(date_season,1,4))) AS start_season
+FROM `upskills-77140.nba.all_seasons_formatted2` 
+ORDER BY index ASC
