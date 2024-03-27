@@ -1,0 +1,39 @@
+#format date columns with string value
+SELECT
+`index`,
+player_name, 
+team_abbreviation, 
+age, 
+player_height, 
+player_weight, 
+college, 
+country, 
+draft_year,
+CASE 
+  WHEN draft_year = "Undrafted" THEN null
+  ELSE EXTRACT(YEAR FROM PARSE_DATE("%Y", draft_year))
+END AS date_draft_year,
+draft_round,
+CASE 
+  WHEN draft_round = "Undrafted" THEN null
+  ELSE CAST(draft_round AS INT64)
+END AS draft_round_int,
+draft_number,
+CASE 
+  WHEN draft_number = "Undrafted" THEN null
+  ELSE CAST(draft_number AS INT64)
+END AS draft_number_int,
+gp, 
+pts, 
+reb, 
+ast, 
+net_rating, 
+oreb_pct, 
+dreb_pct, 
+usg_pct, 
+ts_pct, 
+ast_pct,
+season,
+CONCAT((SUBSTR(season, 1, 4)), '-', CONCAT(SUBSTR(season, 1, 2), SUBSTR(season, 6, 2))) AS date_season
+#date_season need to be parsed
+FROM upskills-77140.nba.all_seasons_formatted
