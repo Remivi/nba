@@ -1,0 +1,19 @@
+WITH top_scorers_per_season AS (
+  SELECT
+    start_season,
+    player_name,
+    pts,
+    ROW_NUMBER() OVER (PARTITION BY start_season ORDER BY pts DESC) AS rank
+  FROM
+    `upskills-77140.nba.all_seasons_formatted_last`
+)
+
+SELECT
+  start_season,
+  player_name,
+  pts
+FROM
+  top_scorers_per_season
+WHERE
+  rank = 1
+ORDER BY start_season DESC
